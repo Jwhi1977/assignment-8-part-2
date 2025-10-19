@@ -29,8 +29,9 @@ jobs:
           pip install pre-commit pyright
 
       - name: Run pre-commit hooks
+        if: ${{ hashFiles('.pre-commit-config.yaml') != '' }}
         run: pre-commit run --all-files --show-diff-on-failure
-
+      
       - name: Run pyright
         run: pyright
 
