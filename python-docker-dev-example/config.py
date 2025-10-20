@@ -49,9 +49,11 @@ class Settings(BaseSettings):
         url = MultiHostUrl.build(
             scheme="postgresql+psycopg",
             username=self.POSTGRES_USER,
-            password=self.POSTGRES_PASSWORD
-            if self.POSTGRES_PASSWORD
-            else self.POSTGRES_PASSWORD_FILE,
+            password=(
+                self.POSTGRES_PASSWORD
+                if self.POSTGRES_PASSWORD
+                else self.POSTGRES_PASSWORD_FILE
+            ),
             host=self.POSTGRES_SERVER,
             port=self.POSTGRES_PORT,
             path=self.POSTGRES_DB,
